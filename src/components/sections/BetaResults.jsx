@@ -14,9 +14,7 @@ const BetaResults = () => (
             >
                 <div className="section-badge">REAL EVIDENCE</div>
                 <h2>[실제 베타 테스터 1개월 변화 수치]</h2>
-                <p style={{ fontSize: '1.5rem', fontWeight: 600, color: 'white', marginTop: '20px', marginBottom: '10px' }}>
-                    FlowGuard는 딥러닝 AI로 집중력 문제를 해결합니다.
-                </p>
+
                 <p className="beta-impact-text">실제 이용자들의 변화</p>
             </motion.div>
             <motion.div

@@ -3,6 +3,7 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import HeroSection from './components/sections/HeroSection';
 import ProblemSection from './components/sections/ProblemSection';
+import ImpactBridge from './components/sections/ImpactBridge';
 import BetaResults from './components/sections/BetaResults';
 import SolutionSection from './components/sections/SolutionSection';
 import SystemSection from './components/sections/SystemSection';
@@ -18,6 +19,7 @@ function App() {
       <main>
         <HeroSection />
         <ProblemSection />
+        <ImpactBridge />
         <BetaResults />
         <SolutionSection />
         <SystemSection />
