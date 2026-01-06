@@ -3,7 +3,8 @@
 :root {
   /* Soft-Tech Trust Color Palette - Refined for Premium Feel */
   --primary-deep-blue: #0F172A;
-  --secondary-warm-green: #22C55E;
+  --secondary-emerald: #10B981;
+  --secondary-glow: #34D399;
   --bg-warm-white: #F8FAFC;
   --accent-light-blue: #F0F9FF;
 
@@ -17,7 +18,7 @@
 
   /* Layout */
   --header-height: 80px;
-  --section-padding: 120px 5%;
+  --section-padding: 140px 5%;
 }
 
 * {
@@ -61,13 +62,15 @@ button {
   padding: 0 20px;
 }
 
-/* Glassmorphism Classes - Softened for Elegance */
+/* Glassmorphism Classes - Enhanced for Depth */
 .glass {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 20px 40px -4px rgba(15, 23, 42, 0.1);
 }
 
 .dark-glass {

@@ -228,7 +228,13 @@ const BetaResults = () => (
 const SolutionSection = () => (
   <section id="solution" className="solution">
     <div className="container solution-layout">
-      <div className="solution-text">
+      <motion.div
+        className="solution-text"
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="section-badge">AI SOLUTION</div>
         <h2>AI가 되살리는 '엉덩이 힘'</h2>
         <div className="solution-features">
@@ -258,8 +264,14 @@ const SolutionSection = () => (
             <li><strong>아이 스스로 변화</strong>: 자신의 성장을 확인하며 얻는 공부 자신감</li>
           </ul>
         </div>
-      </div>
-      <div className="solution-visual">
+      </motion.div>
+      <motion.div
+        className="solution-visual"
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+      >
         <div className="mockup-container">
           <div className="dashboard-mockup dark-glass">
             <div className="mockup-header">
@@ -288,7 +300,7 @@ const SolutionSection = () => (
           </div>
           <img src={motherImg} alt="Mother smiling" className="floating-img" />
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -296,12 +308,24 @@ const SolutionSection = () => (
 const SystemSection = () => (
   <section id="system" className="system">
     <div className="container">
-      <div className="section-header">
+      <motion.div
+        className="section-header"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
         <h2>상위 1%의 습관, '알림 서비스'</h2>
         <p>감시가 아니라, 아이의 학습 환경을 지키는 가장 확실한 방법입니다.</p>
-      </div>
+      </motion.div>
 
-      <div className="kakao-mockup">
+      <motion.div
+        className="kakao-mockup"
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
         {/* Message 1 */}
         <div className="kakao-msg-wrapper">
           <div className="kakao-profile">F</div>
@@ -348,7 +372,7 @@ const SystemSection = () => (
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
@@ -356,7 +380,13 @@ const SystemSection = () => (
 const ReportSection = () => (
   <section id="report" className="report">
     <div className="container">
-      <div className="report-card glass">
+      <motion.div
+        className="report-card glass"
+        initial={{ opacity: 0, y: 80 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
         <div className="report-header">
           <h3>오늘의 몰입 리포트</h3>
           <span className="date">2026. 01. 05</span>
@@ -417,14 +447,20 @@ const ReportSection = () => (
           </div>
           <p className="timeline-hint">세션 종료 시 집중 하락 구간의 사유를 직접 입력해야 합니다.</p>
         </div>
-      </div>
+      </motion.div>
     </div>
   </section>
 );
 
 const SocialProofSection = () => (
   <section className="social-proof">
-    <div className="container">
+    <motion.div
+      className="container"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+    >
       <div className="review-box">
         <blockquote>"아이와 싸우는 시간이 줄었어요. 이제 데이터로 칭찬해주니 아이도 성취감을 느껴요."</blockquote>
         <cite>- 중등 2학년 학부모 김OO님</cite>
@@ -441,7 +477,7 @@ const SocialProofSection = () => (
           내 아이 전두엽 깨우기, 지금 시작하세요
         </motion.button>
       </div>
-    </div>
+    </motion.div>
   </section>
 );
 
