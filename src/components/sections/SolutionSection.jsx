@@ -81,6 +81,60 @@ const SolutionSection = () => (
                     <img src={motherImg} alt="Mother smiling" className="floating-img" />
                 </div>
             </motion.div>
+
+            {/* 학술적 근거 */}
+            <div style={{
+                marginTop: '60px',
+                padding: '24px',
+                background: 'rgba(16, 185, 129, 0.03)',
+                borderRadius: '12px',
+                borderLeft: '3px solid var(--secondary-emerald)'
+            }}>
+                <p style={{
+                    fontSize: '0.9rem',
+                    color: '#64748b',
+                    lineHeight: '1.7',
+                    marginBottom: '12px'
+                }}>
+                    MDPI 및 PubMed 등재 논문들이 시선 추적 기술이 학습 집중도를 측정하는 유효한 방법임을 입증하고 있습니다.
+                </p>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '6px',
+                    fontSize: '0.75rem',
+                    color: '#94a3b8'
+                }}>
+                    <a
+                        href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12641983/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            color: '#64748b',
+                            textDecoration: 'none',
+                            transition: 'color 0.2s'
+                        }}
+                        onMouseEnter={(e) => e.target.style.color = 'var(--secondary-emerald)'}
+                        onMouseLeave={(e) => e.target.style.color = '#64748b'}
+                    >
+                        → PubMed: Eye-Tracking Analysis in Educational Research
+                    </a>
+                    <a
+                        href="https://www.mdpi.com/2673-4591/103/1/10"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                            color: '#64748b',
+                            textDecoration: 'none',
+                            transition: 'color 0.2s'
+                        }}
+                        onMouseEnter={(e) => e.target.style.color = 'var(--secondary-emerald)'}
+                        onMouseLeave={(e) => e.target.style.color = '#64748b'}
+                    >
+                        → MDPI: Attention Measurement Using Gaze-Tracking Technology
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 );
