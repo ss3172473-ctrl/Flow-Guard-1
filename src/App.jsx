@@ -7,7 +7,7 @@ import motherImg from './assets/mother_smiling.png';
 import webcamImg from './assets/webcam_child_face.png';
 import browserImg from './assets/study_browser_screen.png';
 import consultImg from './assets/consultation_premium.png';
-import aiConsultImg from './assets/consultation_robot_v2.jpg';
+import aiConsultImg from './assets/consultation_robot_v3.png';
 import './App.css';
 
 // Animation Variants
