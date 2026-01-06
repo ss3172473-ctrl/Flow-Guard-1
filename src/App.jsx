@@ -442,80 +442,144 @@ const SystemSection = () => (
   </section>
 );
 
-const ReportSection = () => (
-  <section id="report" className="report">
-    <div className="container">
-      <motion.div
-        className="report-card glass"
-        initial={{ opacity: 0, y: 80 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
-        <div className="report-header">
-          <h3>오늘의 몰입 리포트</h3>
-          <span className="date">2026. 01. 05</span>
-        </div>
-        <div className="report-grid">
-          <div className="main-stats">
-            <div className="stat-circle-group">
-              <div className="score-circle">
-                <span className="label">몰입 점수</span>
-                <span className="value">88</span>
-                <span className="rank">상위 5%</span>
-              </div>
-              <div className="eff-metric">
-                <span>학습 효율</span>
-                <strong>94%</strong>
-              </div>
-            </div>
-          </div>
-          <div className="report-details">
-            <div className="detail-item">
-              <div className="detail-header">
-                <span>순도 100% 몰입 시간</span>
-                <strong>2시간 15분</strong>
-              </div>
-              <p className="detail-sub">전체 학습 시간 중 '진짜 집중한 시간'만 추출하여 표시.</p>
-              <div className="progress-bar"><div className="fill" style={{ width: '92%' }}></div></div>
-            </div>
+import aiConsultImg from './assets/ai_consult_robot.png';
+import { useScroll, useTransform, useSpring, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
-            <div className="retrospection-grid">
-              <div className="child-voice">
-                <strong>아이의 목소리 🗣️</strong>
-                <p>"수학 문제 풀다 막혀서 잠깐 멍때렸어요. 내일은 모르는 건 넘어가고 나중에 풀게요."</p>
-              </div>
-              <div className="ai-solution">
-                <strong>AI의 솔루션 🤖</strong>
-                <p>"OO이는 오후 4시경 집중력이 급락하는 패턴을 보입니다. 이때 10분간의 스트레칭을 추천합니다."</p>
-              </div>
-            </div>
-          </div>
-        </div>
+// Animated Number Component
+const AnimatedNumber = ({ value }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 });
+  const display = useTransform(spring, (current) => Math.round(current));
 
-        <div className="timeline-container">
-          <div className="timeline-header">
-            <span>몰입 타임라인</span>
-            <span className="legend">
-              <i className="dot green"></i> 집중 <i className="dot red"></i> 하락
-            </span>
+  useEffect(() => {
+    if (isInView) {
+      spring.set(value);
+    }
+  }, [isInView, value, spring]);
+
+  return <motion.span ref={ref}>{display}</motion.span>;
+};
+
+const ReportSection = () => {
+  const circumference = 2 * Math.PI * 90; // r=90
+
+  return (
+    <section id="report" className="report">
+      <div className="container">
+        <motion.div
+          className="report-card glass"
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+        >
+          <div className="report-header">
+            <h3>오늘의 몰입 리포트</h3>
+            <span className="date">2026. 01. 05</span>
           </div>
-          <div className="traffic-light-timeline">
-            <div className="timeline-segment green"></div>
-            <div className="timeline-segment green"></div>
-            <div className="timeline-segment yellow"></div>
-            <div className="timeline-segment green"></div>
-            <div className="timeline-segment red clickable">
-              <div className="tooltip-reason">사유: 수학 문제 막힘</div>
+          <div className="report-grid">
+            <div className="main-stats">
+              <div className="stat-circle-group">
+                <div className="score-circle-wrapper">
+                  <svg width="220" height="220" viewBox="0 0 220 220" className="score-svg">
+                    <circle cx="110" cy="110" r="90" fill="none" stroke="#e2e8f0" strokeWidth="15" />
+                    <motion.circle 
+                      cx="110" 
+                      cy="110" 
+                      r="90" 
+                      fill="none" 
+                      stroke="#10B981" 
+                      strokeWidth="15" 
+                      strokeLinecap="round"
+                      strokeDasharray={circumference}
+                      initial={{ strokeDashoffset: circumference }}
+                      whileInView={{ strokeDashoffset: circumference * (1 - 0.88) }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 2, ease: "easeOut", delay: 0.5 }}
+                      style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%" }}
+                    />
+                  </svg>
+                  <div className="score-content">
+                    <span className="label">몰입 점수</span>
+                    <span className="value"><AnimatedNumber value={88} /></span>
+                    <span className="rank">상위 5%</span>
+                  </div>
+                </div>
+                <div className="eff-metric">
+                  <span>학습 효율</span>
+                  <strong><AnimatedNumber value={94} />%</strong>
+                </div>
+              </div>
             </div>
-            <div className="timeline-segment green"></div>
+            <div className="report-details">
+              <div className="detail-item">
+                <div className="detail-header">
+                  <span>순도 100% 몰입 시간</span>
+                  <strong>2시간 15분</strong>
+                </div>
+                <p className="detail-sub">전체 학습 시간 중 '진짜 집중한 시간'만 추출하여 표시.</p>
+                <div className="progress-bar">
+                  <motion.div 
+                    className="fill" 
+                    initial={{ width: 0 }}
+                    whileInView={{ width: '92%' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                  />
+                </div>
+              </div>
+
+              <div className="retrospection-grid">
+                <div className="child-voice">
+                  <strong>아이의 목소리 🗣️</strong>
+                  <p>"수학 문제 풀다 막혀서 잠깐 멍때렸어요. 내일은 모르는 건 넘어가고 나중에 풀게요."</p>
+                </div>
+                <div className="ai-solution">
+                  <strong>AI의 솔루션 🤖</strong>
+                  <p>"OO이는 오후 4시경 집중력이 급락하는 패턴을 보입니다. 이때 10분간의 스트레칭을 추천합니다."</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <p className="timeline-hint">세션 종료 시 집중 하락 구간의 사유를 직접 입력해야 합니다.</p>
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
+
+          <div className="timeline-container">
+            <div className="timeline-header">
+              <span>몰입 타임라인</span>
+              <span className="legend">
+                <i className="dot green"></i> 집중 <i className="dot red"></i> 하락
+              </span>
+            </div>
+            <motion.div 
+              className="traffic-light-timeline"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.2 }
+                }
+              }}
+            >
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment green"></motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment green"></motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment yellow"></motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment green"></motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment red clickable">
+                <div className="tooltip-reason">사유: 수학 문제 막힘</div>
+              </motion.div>
+              <motion.div variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } }} className="timeline-segment green"></motion.div>
+            </motion.div>
+            <p className="timeline-hint">세션 종료 시 집중 하락 구간의 사유를 직접 입력해야 합니다.</p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 const SocialProofSection = () => (
   <section className="social-proof">
@@ -563,18 +627,14 @@ const ConsultationForm = () => {
       userAgent: navigator.userAgent
     };
 
-    // DB 전송 로직 (예: Google Sheets API, Serverless Function, etc.)
     console.log('Consultation Submitted:', submissionData);
     alert('상담 신청이 완료되었습니다. 전문가가 곧 연락드리겠습니다.');
-
-    // Google Sheets 연동을 위한 안내:
-    // 실제 운영 시에는 Sheet.best 또는 Google Apps Script를 사용하여 이 데이터를 구글 시트에 바로 기록할 수 있습니다.
   };
 
   return (
     <section id="consultation" className="consultation">
       <div className="container">
-        <div className="consult-layout glass">
+        <div className="consult-layout">
           <div className="consult-text">
             <div className="section-badge">무료 상담 신청</div>
             <h2>우리 아이의 공부 정체기,<br /> 전문가와 함께 해결하세요.</h2>
@@ -598,23 +658,15 @@ const ConsultationForm = () => {
                     value={formData.grade}
                     onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
                   >
-                    <optgroup label="초등권장 (골든타임)">
-                      <option>초등 5학년</option>
-                      <option>초등 6학년</option>
-                    </optgroup>
-                    <optgroup label="중등권장 (절벽대비)">
-                      <option>중등 1학년</option>
-                      <option>중등 2학년</option>
-                      <option>중등 3학년</option>
-                    </optgroup>
-                    <optgroup label="고등권장">
-                      <option>고등 1학년</option>
-                      <option>고등 2학년</option>
-                      <option>고등 3학년</option>
-                    </optgroup>
-                    <optgroup label="기타">
-                      <option>기타 (초등 1~4학년)</option>
-                    </optgroup>
+                    <option>초등 5학년</option>
+                    <option>초등 6학년</option>
+                    <option>중등 1학년</option>
+                    <option>중등 2학년</option>
+                    <option>중등 3학년</option>
+                    <option>고등 1학년</option>
+                    <option>고등 2학년</option>
+                    <option>고등 3학년</option>
+                    <option>기타</option>
                   </select>
                 </div>
               </div>
@@ -631,26 +683,25 @@ const ConsultationForm = () => {
               <div className="form-group">
                 <label>문의 사항 (선택)</label>
                 <textarea
-                  placeholder="아이의 학습 고민이나 궁금하신 점을 적어주세요."
+                  placeholder="아이의 학습 고민이나 궁금한 점을 자유롭게 적어주세요."
                   rows="3"
                   value={formData.inquiry}
                   onChange={(e) => setFormData({ ...formData, inquiry: e.target.value })}
                 ></textarea>
               </div>
-              <button type="submit" className="submit-btn highlight-pulse">
+              <button type="submit" className="submit-btn">
                 무료 상담 전문가 연결하기
               </button>
             </form>
-            <p className="privacy-hint">정보는 오직 상담 목적으로만 사용되며 안전하게 보호됩니다.</p>
           </div>
           <div className="consult-visual">
             <motion.img
-              src={consultImg}
-              alt="Consultation Illustration"
-              initial={{ opacity: 0, scale: 0.95 }}
+              src={aiConsultImg}
+              alt="AI Consultation Robot"
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              style={{ mixBlendMode: 'multiply' }}
+              style={{ maxWidth: '100%', height: 'auto', dropShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
             />
           </div>
         </div>
