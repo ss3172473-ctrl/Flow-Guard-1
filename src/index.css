@@ -1,23 +1,23 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
 :root {
-  /* Soft-Tech Trust Color Palette */
-  --primary-deep-blue: #0A2647;
-  --secondary-warm-green: #4ADE80;
-  --bg-warm-white: #FAFAF9;
-  --accent-light-blue: #E0F2FE;
-  
+  /* Soft-Tech Trust Color Palette - Refined for Premium Feel */
+  --primary-deep-blue: #0F172A;
+  --secondary-warm-green: #22C55E;
+  --bg-warm-white: #F8FAFC;
+  --accent-light-blue: #F0F9FF;
+
   /* Text Colors */
-  --text-main: #1C1917;
-  --text-muted: #44403C;
+  --text-main: #0F172A;
+  --text-muted: #475569;
   --text-on-dark: #FFFFFF;
 
   /* Fonts */
   --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-  
+
   /* Layout */
   --header-height: 80px;
-  --section-padding: 100px 5%;
+  --section-padding: 120px 5%;
 }
 
 * {
@@ -38,7 +38,11 @@ body {
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   line-height: 1.2;
   font-weight: 700;
 }
@@ -57,29 +61,48 @@ button {
   padding: 0 20px;
 }
 
-/* Glassmorphism Classes */
+/* Glassmorphism Classes - Softened for Elegance */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(15, 23, 42, 0.05);
 }
 
 .dark-glass {
-  background: rgba(10, 38, 71, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Animations Variables */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes pulse {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
