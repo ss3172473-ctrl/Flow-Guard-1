@@ -39,9 +39,9 @@ const SolutionSection = () => (
                         <span>데이터가 만드는 성취감</span>
                     </div>
                     <ul className="impact-list">
-                        <li><strong>0.1초 정밀 분석</strong>: 고개 각도와 시선을 즉시 포착하여 리포트</li>
-                        <li><strong>정량적 데이터 제공</strong>: 막연한 칭찬 대신 숫자로 보여주는 몰입도</li>
-                        <li><strong>아이 스스로 변화</strong>: 자신의 성장을 확인하며 얻는 공부 자신감</li>
+                        <li>고개 각도와 시선을 0.1초 단위로 분석해요</li>
+                        <li>막연한 칭찬보다 <strong>숫자로 보여주는 몰입도</strong></li>
+                        <li>성장을 직접 확인하며 스스로 <strong>자신감을 얻어요</strong></li>
                     </ul>
                 </div>
             </motion.div>
